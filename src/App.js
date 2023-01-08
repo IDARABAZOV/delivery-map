@@ -1,24 +1,24 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 
+import { Row, Col, Layout } from 'antd';
+
+import Map from './components/Map/Map';
+import DeliveryTable from './components/DeliveryTable/DeliveryTable';
+
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <Row justify={"space-around"}>
+        <Col span={8}>
+          <DeliveryTable />
+        </Col>
+        <Col span={12}>
+          <Map />
+        </Col>
+      </Row>
+    </Layout>
   );
 }
 
