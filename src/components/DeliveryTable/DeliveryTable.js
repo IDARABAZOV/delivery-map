@@ -1,63 +1,6 @@
 import React from "react";
 import { Table, Typography } from "antd";
-
-const dataSource = [
-    {
-        key: 1,
-        from: {
-            lat: 59.84660399,
-            lng: 30.29496392
-        },
-        to: {
-            lat: 59.82934196,
-            lng: 30.42423701
-        }
-    },
-    {
-        key: 2,
-        from: {
-            lat: 59.82934196,
-            lng: 30.42423701
-        },
-        to: {
-            lat: 59.82761295,
-            lng: 30.41705607
-        }
-    },
-    {
-        key: 3,
-        from: {
-            lat: 59.83567701,
-            lng: 30.38064206
-        },
-        to: {
-            lat: 59.84660399,
-            lng: 30.29496392
-        }
-    },
-    {
-        key: 4,
-        from: {
-            lat: 59.84660399,
-            lng: 30.29496392
-        },
-        to: {
-            lat: 59.82761295,
-            lng: 30.41705607
-        }
-    },
-    {
-        key: 5,
-        from: {
-            lat: 59.83567701,
-            lng: 30.38064206
-        },
-        to: {
-            lat: 59.84660399,
-            lng: 30.29496392
-        }
-    }
-]
+import { useSelector, useDispatch } from "react-redux";
 
 const columns = [
     {
@@ -75,18 +18,24 @@ const columns = [
 ]
 
 function DeliveryTable() {
+    const { coordinates, polyline, waypoints } = useSelector(store => store.coordinates)
+    const dispatch = useDispatch()
+
+    console.log(polyline, waypoints)
+
     return (
         <>
             <Typography.Title>Delivery Table</Typography.Title>
             <Table
+                loading={coordinates ? false : true}
                 pagination={false}
-                dataSource={dataSource}
+                dataSource={coordinates}
                 columns={columns}
-                onRow={(record, rowIndex) => {
+                onRow={(record) => {
                     return {
-                        onClick: (event) => {
-                            console.log('Row index', rowIndex)
-                            console.log('record', record)
+                        onClick: () => {
+                            dispatch({type: 'GET_ROUTE_REQUESTED', payload: record})
+                            // dispatch({ type: 'GET_ROUTE_SUCCEEDED' })
                         }
                     }
                 }}
