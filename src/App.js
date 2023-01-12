@@ -11,9 +11,9 @@ function App() {
 
   return (
     <Layout>
-      <Row justify={"space-around"} style={{ height: '90vh' }}>
+      <Row justify={"space-around"} style={{ height: '40rem' }}>
         <Col span={8}>
-          <DeliveryTable />
+          <DeliveryTable map={map} />
         </Col>
         <Col span={12}>
           <Map map={map} setMap={setMap} />

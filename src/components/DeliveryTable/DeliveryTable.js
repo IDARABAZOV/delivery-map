@@ -17,29 +17,30 @@ const columns = [
     }
 ]
 
-function DeliveryTable() {
-    const { coordinates, polyline, waypoints } = useSelector(store => store.coordinates)
+function DeliveryTable({ map }) {
+    const { coordinates } = useSelector(store => store.coordinates)
     const dispatch = useDispatch()
-
-    console.log(polyline, waypoints)
 
     return (
         <>
             <Typography.Title>Delivery Table</Typography.Title>
-            <Table
-                loading={coordinates ? false : true}
-                pagination={false}
-                dataSource={coordinates}
-                columns={columns}
-                onRow={(record) => {
-                    return {
-                        onClick: () => {
-                            dispatch({type: 'GET_ROUTE_REQUESTED', payload: record})
-                            // dispatch({ type: 'GET_ROUTE_SUCCEEDED' })
+            {map ? (
+                <Table
+                    loading={coordinates ? false : true}
+                    pagination={false}
+                    dataSource={coordinates}
+                    columns={columns}
+                    onRow={(record) => {
+                        return {
+                            onClick: () => {
+                                dispatch({ type: 'GET_ROUTE_REQUESTED', payload: record })
+                                map.flyTo(record.from, 13)
+                            }
                         }
-                    }
-                }}
-            />
+                    }}
+                />
+            ) : null}
+
         </>
     )
 }

@@ -7,9 +7,9 @@ import { GET_ROUTE_SUCCEEDED } from "../redux/reducers/coordinates"
 function* getRouteWorker(action) {
     try {
         const { from, to } = action.payload
-        const { routes, waypoints } = yield call(getRoute, from.lat, from.lng, to.lat, to.lng)
+        const { routes } = yield call(getRoute, from.lng, from.lat, to.lng, to.lat)
         const polyline = yield PolyUtil.decode(routes[0].geometry)
-        yield put(GET_ROUTE_SUCCEEDED({ polyline, waypoints }))
+        yield put(GET_ROUTE_SUCCEEDED({ polyline }))
     } catch (e) {
         console.log(e)
     }

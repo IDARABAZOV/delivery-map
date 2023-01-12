@@ -59,7 +59,6 @@ const initialState = {
         }
     ],
     polyline: [],
-    waypoints: []
 }
 
 const coordinates = createSlice({
@@ -68,7 +67,6 @@ const coordinates = createSlice({
     reducers: {
         GET_ROUTE_SUCCEEDED: (state, action) => {
             state.polyline = action.payload.polyline
-            state.waypoints = action.payload.waypoints
         }
     }
 })
