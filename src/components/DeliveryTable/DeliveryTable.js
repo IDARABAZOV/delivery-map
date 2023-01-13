@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Table, Typography } from "antd";
 import { useSelector, useDispatch } from "react-redux";
+import "./DeliveryTable.css"
 
 const columns = [
     {
@@ -18,18 +19,22 @@ const columns = [
 ]
 
 function DeliveryTable({ map }) {
+    const [selectedRow, setSelectedRow] = useState(null)
     const { coordinates } = useSelector(store => store.coordinates)
     const dispatch = useDispatch()
 
     return (
         <>
-            <Typography.Title>Delivery Table</Typography.Title>
+            <Typography.Title>Доставка</Typography.Title>
             {map ? (
                 <Table
                     loading={coordinates ? false : true}
                     pagination={false}
                     dataSource={coordinates}
                     columns={columns}
+                    rowClassName={(record) => {
+                        return record.key === selectedRow ? 'selected-row' : ''
+                    }}
                     onRow={(record) => {
                         return {
                             onClick: () => {
@@ -37,7 +42,8 @@ function DeliveryTable({ map }) {
                                 map.fitBounds([
                                     record.from,
                                     record.to
-                                ], {padding: [10, 10]})
+                                ], { padding: [10, 10] })
+                                setSelectedRow(record.key)
                             }
                         }
                     }}
