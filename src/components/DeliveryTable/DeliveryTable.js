@@ -34,7 +34,10 @@ function DeliveryTable({ map }) {
                         return {
                             onClick: () => {
                                 dispatch({ type: 'GET_ROUTE_REQUESTED', payload: record })
-                                map.flyTo(record.from, 13)
+                                map.fitBounds([
+                                    record.from,
+                                    record.to
+                                ], {padding: [10, 10]})
                             }
                         }
                     }}
