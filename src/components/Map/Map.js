@@ -13,7 +13,7 @@ L.Icon.Default.mergeOptions({
 });
 
 function Map({ setMap }) {
-    const { polyline } = useSelector(store => store.coordinates)
+    const polyline = useSelector(store => store.coordinates.polyline)
 
     return (
         <>

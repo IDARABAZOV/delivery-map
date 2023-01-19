@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Table, Typography } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import "./DeliveryTable.css"
+import { getRouteRequested } from "../../actions";
 
 const columns = [
     {
@@ -38,7 +39,7 @@ function DeliveryTable({ map }) {
                     onRow={(record) => {
                         return {
                             onClick: () => {
-                                dispatch({ type: 'GET_ROUTE_REQUESTED', payload: record })
+                                dispatch(getRouteRequested(record))
                                 map.fitBounds([
                                     record.from,
                                     record.to

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getRouteSuccesed } from "../../actions";
 
 const initialState = {
     coordinates: [
@@ -64,13 +65,12 @@ const initialState = {
 const coordinates = createSlice({
     name: 'coordinates',
     initialState,
-    reducers: {
-        GET_ROUTE_SUCCEEDED: (state, action) => {
-            state.polyline = action.payload.polyline
-        }
+    reducers: {},
+    extraReducers: (builder) => {
+        builder.addCase(getRouteSuccesed, (state, action) => {
+            state.polyline = action.payload
+        })
     }
 })
-
-export const { GET_ROUTE_SUCCEEDED } = coordinates.actions
 
 export default coordinates.reducer
