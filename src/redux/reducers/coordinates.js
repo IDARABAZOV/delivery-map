@@ -1,9 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-<<<<<<< HEAD
 import { getRouteSucceeded } from "../../actions";
-=======
-import { getRouteSuccesed } from "../../actions";
->>>>>>> 448ec7cf501ef73db5412f19227bc2d1d5e489bf
 
 const initialState = {
     coordinates: [
