@@ -3,21 +3,9 @@ import { Table, Typography } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import "./DeliveryTable.css"
 import { getRouteRequested } from "../../actions";
+import { columns } from "./config";
 
-const columns = [
-    {
-        title: 'From (lat / lng)',
-        render: (_, { from }) => (
-            <p>{from.lat.toFixed(2)} / {from.lng.toFixed(2)}</p>
-        )
-    },
-    {
-        title: 'To (lat / lng)',
-        render: (_, { to }) => (
-            <p>{to.lat.toFixed(2)} / {to.lng.toFixed(2)}</p>
-        )
-    }
-]
+
 
 function DeliveryTable({ map }) {
     const [selectedRow, setSelectedRow] = useState(null)
