@@ -1,4 +1,4 @@
 import { createAction } from "@reduxjs/toolkit"
 
 export const getRouteRequested = createAction('GET_ROUTE_REQUESTED')
-export const getRouteSucceeded = createAction('GET_ROUTE_SUCCEEDED')
+export const getRouteSucceed = createAction('GET_ROUTE_SUCCEEDED')
