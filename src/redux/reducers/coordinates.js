@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getRouteSucceeded } from "../../actions";
+import { getRouteSucceeded, getRouteFailed } from "../../actions";
 
 const initialState = {
     coordinates: [
@@ -60,6 +60,7 @@ const initialState = {
         }
     ],
     polyline: [],
+    error: ''
 }
 
 const coordinates = createSlice({
@@ -69,6 +70,10 @@ const coordinates = createSlice({
     extraReducers: (builder) => {
         builder.addCase(getRouteSucceeded, (state, action) => {
             state.polyline = action.payload
+            state.error = ''
+        })
+        builder.addCase(getRouteFailed, (state) => {
+            state.error = 'Нет соединения с сервером'
         })
     }
 })

@@ -2,7 +2,7 @@ import { all, call, put, takeEvery } from "redux-saga/effects"
 import { getRoute } from "../api/coordinates"
 import PolyUtil from "polyline-encoded"
 
-import { getRouteSucceeded, getRouteRequested } from "../actions"
+import { getRouteSucceeded, getRouteRequested, getRouteFailed } from "../actions"
 
 function* getRouteWorker(action) {
     try {
@@ -12,6 +12,7 @@ function* getRouteWorker(action) {
         yield put(getRouteSucceeded(polyline))
     } catch (e) {
         console.log(e)
+        yield put(getRouteFailed('Нет соединения с интернетом'))
     }
 }
 
